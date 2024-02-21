@@ -2,16 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UserProfileAssignment.MainPage">
+    
+    <StackLayout Margin="20">
+        <Label HorizontalOptions="Center" Text="Profile"/>
+        <Label HorizontalOptions="Center" Text="{Binding FirstName}"/>
+        <Label HorizontalOptions="Center" Text="{Binding Surname}"/>
+        <Label HorizontalOptions="Center" Text="{Binding Email}"/>
+        <Label HorizontalOptions="Center" Text="{Binding Bio}"/>
+        <Entry x:Name="FirstNameEntry" Placeholder="First Name"/>
+        <Entry x:Name="SurnameEntry" Placeholder="Surname"/>
+        <Entry x:Name="EmailEntry" Placeholder="Email"/>
+        <Entry x:Name="BioEntry" Placeholder="Bio"/>
+    </StackLayout>
+    
 
-    <ContentPage.Content>
-        <StackLayout Padding="20">
-            <Image Source="{Binding ProfileImage}" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" />
-            <Entry x:Name="NameEntryBox" Placeholder="{Binding Name}" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center" />
-            <Entry x:Name="EmailEntryBox"  Placeholder="{Binding Email}" FontSize="18" HorizontalOptions="Center" />
-            <Button Text="Save Changes" Clicked="SaveChangesButton_Clicked" />
-            <Label x:Name="TextBox" FontSize="18" HorizontalOptions="Center"/>
 
-        </StackLayout>
-    </ContentPage.Content>
 
 </ContentPage>
