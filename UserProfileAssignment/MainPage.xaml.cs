@@ -52,42 +52,72 @@ namespace UserProfileAssignment
 {
     public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
-        public string fileFullName;
+        public string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "accounts.txt");
+
         public MainPage()
         {
             InitializeComponent();
-
-            // Initialize fileFullName with a default value
-            var filePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            fileFullName = Path.Combine(filePath, "user_profile.txt");
-            OnPropertyChanged();
+            CurrentAccount = LoadAccount();
             BindingContext = this;
+
         }
 
-        public class Account
+        private Account _account;
+
+        public Account CurrentAccount
         {
-            public string Name { get; set; }
-            public string Email { get; set; }
+            get { return _account; }
+            set { _account = value; }
+        }
+        public void DisableEntry() 
+        {
+            EmailEntry.IsEnabled = false;
+            NameEntry.IsEnabled = false;
+            SurnameEntry.IsEnabled = false;
+            BioEntry.IsEnabled = false;
+        }
+
+        public void EnableEntry() 
+        {
+            EmailEntry.IsEnabled = true;
+            NameEntry.IsEnabled = true;
+            SurnameEntry.IsEnabled = true;
+            BioEntry.IsEnabled = true;
+        }
+        public void SaveAccount(Account account)
+        {
+            string accountJson = JsonConvert.SerializeObject(account);
+            File.WriteAllText(fileName, accountJson);
+        }
+
+        public Account LoadAccount() 
+        {
+            if (File.Exists(fileName))
+            {
+                string accountTxt = File.ReadAllText(fileName);
+
+                Account savedAccount = JsonConvert.DeserializeObject<Account>(accountTxt);
+                DisableEntry();
+                return savedAccount;
+
+            }
+            else
+            {
+                EnableEntry();
+                return new Account();
+            }
         }
 
         private async void SaveChangesButton_Clicked(object sender, EventArgs e)
         {
-            Account account = new Account
-            {
-                Name = NameEntryBox.Text,
-                Email = EmailEntryBox.Text,
-            };
-
-            string jsonAccount = JsonConvert.SerializeObject(account);
-
-            // Save the user profile to a text file
-            await File.WriteAllTextAsync(fileFullName, jsonAccount);
-            TextBox.Text = File.ReadAllText(fileFullName);
-            NameEntryBox.IsEnabled = false;
-            EmailEntryBox.IsEnabled = false;
-
+            SaveAccount(CurrentAccount);
+            DisableEntry();
         }
 
+        private async void EditBtnClick(object sender, EventArgs e)
+        {
+            EnableEntry();
+        }
     }
 
 }

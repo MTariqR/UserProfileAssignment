@@ -5,14 +5,12 @@
     
     <StackLayout Margin="20">
         <Label HorizontalOptions="Center" Text="Profile"/>
-        <Label HorizontalOptions="Center" Text="{Binding FirstName}"/>
-        <Label HorizontalOptions="Center" Text="{Binding Surname}"/>
-        <Label HorizontalOptions="Center" Text="{Binding Email}"/>
-        <Label HorizontalOptions="Center" Text="{Binding Bio}"/>
-        <Entry x:Name="FirstNameEntry" Placeholder="First Name"/>
-        <Entry x:Name="SurnameEntry" Placeholder="Surname"/>
-        <Entry x:Name="EmailEntry" Placeholder="Email"/>
-        <Entry x:Name="BioEntry" Placeholder="Bio"/>
+        <Entry x:Name="NameEntry" Placeholder="First Name" Text="{Binding CurrentAccount.Name}"/>
+        <Entry x:Name="SurnameEntry" Placeholder="Surname" Text="{Binding CurrentAccount.Surname}"/>
+        <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding CurrentAccount.Email}"/>
+        <Entry x:Name="BioEntry" Placeholder="Bio" Text="{Binding CurrentAccount.Bio}"/>
+        <Button Text="Save" HorizontalOptions="Center" Clicked="SaveChangesButton_Clicked"/>
+        <Button Text="Edit" HorizontalOptions="Center" Clicked="EditBtnClick"/>
     </StackLayout>
     
 
