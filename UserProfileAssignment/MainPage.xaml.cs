@@ -103,7 +103,6 @@ namespace UserProfileAssignment
             }
             else
             {
-                EnableEntry();
                 return new Account();
             }
         }

@@ -33,9 +33,9 @@ namespace UserProfileAssignment
 			set { _email = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Email))); }
 		}
 
-		private int _bio;
+		private string _bio;
 
-		public int Bio
+		public string Bio
 		{
 			get { return _bio; }
 			set { _bio = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Bio))); }
