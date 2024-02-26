@@ -97,6 +97,7 @@ namespace UserProfileAssignment
                 string accountTxt = File.ReadAllText(fileName);
 
                 Account savedAccount = JsonConvert.DeserializeObject<Account>(accountTxt);
+                MessageLabel.Text = "Account Details Loaded";
                 DisableEntry();
                 return savedAccount;
 
@@ -110,11 +111,13 @@ namespace UserProfileAssignment
         private async void SaveChangesButton_Clicked(object sender, EventArgs e)
         {
             SaveAccount(CurrentAccount);
+            MessageLabel.Text = "Account Saved";
             DisableEntry();
         }
 
         private async void EditBtnClick(object sender, EventArgs e)
         {
+            MessageLabel.Text = "Enter New Account Details";
             EnableEntry();
         }
     }

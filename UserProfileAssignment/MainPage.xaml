@@ -9,6 +9,7 @@
         <Entry x:Name="SurnameEntry" Placeholder="Surname" Text="{Binding CurrentAccount.Surname}" Keyboard="Chat"/>
         <Entry x:Name="EmailEntry" Placeholder="Email" Text="{Binding CurrentAccount.Email}" Keyboard="Email"/>
         <Entry x:Name="BioEntry" Placeholder="Bio" Text="{Binding CurrentAccount.Bio}" Keyboard="Text"/>
+        <Label x:Name="MessageLabel" Text="Enter Account Details" HorizontalOptions="Center"/>
         <Button Text="Save" HorizontalOptions="Center" Clicked="SaveChangesButton_Clicked"/>
         <Button Text="Edit" HorizontalOptions="Center" Clicked="EditBtnClick"/>
     </StackLayout>
